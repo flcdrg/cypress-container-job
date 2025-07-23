@@ -76,7 +76,7 @@ jobs:
             type=semver,pattern={{major}},value=${{ steps.tag_version.outputs.new_tag }}
             type=sha
           flavor: |
-            prefix=all,onlatest=false
+            prefix=all-,onlatest=false
             latest=true
 
       # https://github.com/docker/build-push-action
@@ -105,7 +105,7 @@ jobs:
             type=semver,pattern={{major}},value=${{ steps.tag_version.outputs.new_tag }}
             type=sha
           flavor: |
-            prefix=chrome,onlatest=true
+            prefix=chrome-,onlatest=true
             latest=true
 
       # https://github.com/docker/build-push-action
@@ -117,4 +117,56 @@ jobs:
           build-args: |
             NODE_VERSION=22.17.1
             CHROME_VERSION=138.0.7204.168-1
+          outputs: type=image,"name=${{ env.DOCKERHUB_REPO }}",name-canonical=true,push=true
+
+      - name: Extract metadata
+        id: meta-firefox
+        uses: docker/metadata-action@v5
+        with:
+          images: |
+            ${{ env.DOCKERHUB_REPO }}
+          tags: |
+            type=semver,pattern={{version}},value=${{ steps.tag_version.outputs.new_tag }}
+            type=semver,pattern={{major}}.{{minor}},value=${{ steps.tag_version.outputs.new_tag }}
+            type=semver,pattern={{major}},value=${{ steps.tag_version.outputs.new_tag }}
+            type=sha
+          flavor: |
+            prefix=firefox-,onlatest=true
+            latest=true
+
+      # https://github.com/docker/build-push-action
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6.18.0
+        with:
+          tags: ${{ steps.meta-firefox.outputs.tags }}
+          labels: ${{ steps.meta-firefox.outputs.labels }}
+          build-args: |
+            NODE_VERSION=22.17.1
+            FIREFOX_VERSION=139.0.4
+          outputs: type=image,"name=${{ env.DOCKERHUB_REPO }}",name-canonical=true,push=true
+
+      - name: Extract metadata
+        id: meta-edge
+        uses: docker/metadata-action@v5
+        with:
+          images: |
+            ${{ env.DOCKERHUB_REPO }}
+          tags: |
+            type=semver,pattern={{version}},value=${{ steps.tag_version.outputs.new_tag }}
+            type=semver,pattern={{major}}.{{minor}},value=${{ steps.tag_version.outputs.new_tag }}
+            type=semver,pattern={{major}},value=${{ steps.tag_version.outputs.new_tag }}
+            type=sha
+          flavor: |
+            prefix=edge-,onlatest=true
+            latest=true
+
+      # https://github.com/docker/build-push-action
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6.18.0
+        with:
+          tags: ${{ steps.meta-edge.outputs.tags }}
+          labels: ${{ steps.meta-edge.outputs.labels }}
+          build-args: |
+            NODE_VERSION=22.17.1
+            EDGE_VERSION=138.0.3351.95-1
           outputs: type=image,"name=${{ env.DOCKERHUB_REPO }}",name-canonical=true,push=true
