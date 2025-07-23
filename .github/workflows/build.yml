@@ -56,4 +56,4 @@ jobs:
           tags: ${{ env.DOCKERHUB_REPO }}:latest # ${{ steps.meta.outputs.tags }}
           # labels: ${{ steps.meta.outputs.labels }}
           load: true # Make image available locally
-          outputs: type=image,"name=${{ env.DOCKERHUB_REPO }}",push-by-digest=true,name-canonical=true,push=true
+          #outputs: type=image,"name=${{ env.DOCKERHUB_REPO }}",push-by-digest=true,name-canonical=true,push=true
