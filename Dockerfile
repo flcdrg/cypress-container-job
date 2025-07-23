@@ -2,8 +2,8 @@
 # Using these args will cause an image to be created with
 # Node.js (default version from .env file), Chrome, Firefox and Edge.
 
-# https://nodejs.org/en/about/previous-releases
-ARG NODE_VERSION=22
+# https://nodejs.org/en/about/previous-releases https://nodejs.org/dist/v22.17.1/
+ARG NODE_VERSION='22.17.1'
 
 # https://www.ubuntuupdates.org/package/google_chrome/stable/main/base/google-chrome-stable
 ARG CHROME_VERSION='138.0.7204.168-1'
