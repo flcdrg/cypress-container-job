@@ -50,7 +50,7 @@ jobs:
         uses: docker/build-push-action@v6.18.0
         with:
           # platforms: ${{ matrix.platform }}
-          context: src
+          # context: src
           # push: ${{ github.event_name != 'pull_request' }}
           push: true
           tags: ${{ env.DOCKERHUB_REPO }}:latest # ${{ steps.meta.outputs.tags }}
