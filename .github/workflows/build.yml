@@ -10,7 +10,7 @@ env:
   DOCKERHUB_USERNAME: flcdrg
   REGISTRY: ghcr.io
   REGISTRY2: docker.io
-  DOCKERHUB_REPO: flcdrg/${{ github.repository }}
+  DOCKERHUB_REPO: ${{ github.repository }}
   GHCR_REPO: ghcr.io/flcdrg/${{ github.repository }}
   IMAGE_NAME: ${{ github.repository }}
 
