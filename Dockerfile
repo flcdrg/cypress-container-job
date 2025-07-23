@@ -1,6 +1,5 @@
-# Args are defined in the Dockerfile before the FROM command.
-# Using these args will cause an image to be created with
-# Node.js (default version from .env file), Chrome, Firefox and Edge.
+# See https://github.com/cypress-io/cypress-docker-images/blob/master/factory/README.md for more information
+# on how to use cypress/factory as a base image.
 
 # https://nodejs.org/en/about/previous-releases https://nodejs.org/dist/v22.17.1/
 ARG NODE_VERSION='22.17.1'
@@ -15,5 +14,3 @@ ARG EDGE_VERSION='138.0.3351.95-1'
 ARG FIREFOX_VERSION='139.0.4'
 
 FROM cypress/factory
-
-ENTRYPOINT []
