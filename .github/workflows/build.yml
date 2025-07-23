@@ -53,7 +53,7 @@ jobs:
           # context: src
           # push: ${{ github.event_name != 'pull_request' }}
           push: true
-          tags: ${{ env.DOCKERHUB_REPO }}:latest # ${{ steps.meta.outputs.tags }}
+          tags: ${{ env.IMAGE_NAME }}:latest # ${{ steps.meta.outputs.tags }}
           # labels: ${{ steps.meta.outputs.labels }}
           load: true # Make image available locally
           #outputs: type=image,"name=${{ env.DOCKERHUB_REPO }}",push-by-digest=true,name-canonical=true,push=true
